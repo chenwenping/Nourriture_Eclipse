@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/favor_dish_item_ll"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/item">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
+
+            <TextView
+                android:id="@+id/tv_favor_dish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="user name"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_main" />
+
+            <TextView
+                android:id="@+id/tv_favor_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/tv_favor_dish"
+                android:layout_margin="5dp"
+                android:text="2014-11-11 12:12:12"
+                android:textColor="@color/item_gray_color"
+                android:textSize="@dimen/text_small" />
+
+            <TextView
+                android:id="@+id/tv_favor_user"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_favor_time"
+                android:layout_margin="5dp"
+                android:text="notification content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_main" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

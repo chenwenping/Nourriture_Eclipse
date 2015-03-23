@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Nourriture</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="delete">delete</string>
+    <string name="replay">replay</string>
+    <string name="login">Login</string>
+    <string name="exit">Exit</string>
+    <string name="discover">Discover</string>
+    <string name="dish">Dish</string>
+    <string name="notification">Notification</string>
+    <string name="setting">Setting</string>
+    <string name="back">Back</string>
+    <string name="dish_detail">Dish detail</string>
+    <string name="dish_add">Add Dish</string>
+    <string name="dish_comment">Comment</string>
+    <string name="favor_dishes">Favor Dishes</string>
+    <string name="friends">My Friends</string>
+    <string name="user_comment">My Comment</string>
+    <string name="user_notification">My Notification</string>
+    <string name="login_tip">please login first</string>
+    <string name="user_no_dish_tip">please add dish first</string>
+    <string name="title_activity_user_info">UserInfoActivity</string>
+    <string name="userInfo">UserInfo</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_restaurant_fragment">RestaurantFragment</string>
+    <string name="title_activity_restaurant_detail">RestaurantDetailActivity</string>
+    <string name="title_activity_restaurant_location">RestaurantLocationActivity</string>
+
+</resources>

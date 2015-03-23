@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/title_nav_bar">
+
+        <TextView
+            style="@style/title_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/dish" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_user_dish_login"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/item"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Sorry, you may not have permission to view the related content."
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_big" />
+
+        <Button
+            android:id="@+id/login_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/login_button"
+            android:padding="10dp"
+            android:text="@string/login_tip"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_big" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_user_no_dish"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/item"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Sorry, you may not have any dish now."
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_big" />
+
+        <Button
+            android:id="@+id/btn_add_dish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/login_button"
+            android:padding="10dp"
+            android:text="@string/user_no_dish_tip"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_big" />
+
+    </LinearLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/dishListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/white"
+            android:longClickable="true"
+            android:scrollbars="none" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</LinearLayout>
