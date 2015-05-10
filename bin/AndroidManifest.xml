@@ -64,7 +64,7 @@
         <!--
             <meta-data
             android:name="api_key"
-            android:value="D00kpN0V5FFGUnEHLNk9ErgF" />
+            android:value="D00kpN0V5FFGUnEHLNk9ErgF" />
         -->
 
         <activity
@@ -79,11 +79,13 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".service.PollingService" >
+        <!--
+             <service android:name=".service.PollingService" >
             <intent-filter>
                 <action android:name=".service.PollingService" />
             </intent-filter>
-        </service>
+        </service>
+        -->
 
         <activity
             android:name=".activity.DishDetailActivity"
@@ -134,6 +136,14 @@
         <activity
             android:name=".activity.RestaurantLocationActivity"
             android:label="@string/title_activity_restaurant_location" >
+        </activity>
+        <activity
+            android:name=".activity.DishPayActivity"
+            android:label="@string/title_activity_dish_pay" >
+        </activity>
+        <activity
+            android:name=".activity.BillActivity"
+            android:label="@string/title_activity_bill" >
         </activity>
     </application>
 

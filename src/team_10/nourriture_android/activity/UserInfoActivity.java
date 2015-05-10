@@ -104,12 +104,12 @@ public class UserInfoActivity extends ActionBarActivity implements SwipeRefreshL
             tv_sex.setText("Sex: " + userBean.getGender().trim());
         }
         if(userBean.getEmail()==null || "".equals(userBean.getEmail().trim())){
-            tv_sex.setText("Email: Keep Secret.");
+        	tv_email.setText("Email: Keep Secret.");
         }else{
             tv_email.setText("Email: " + userBean.getEmail().trim());
         }
         if(userBean.getIntroduction()==null || "".equals(userBean.getIntroduction().trim())){
-            tv_sex.setText("Description: No Introduction.");
+        	tv_introduction.setText("Description: No Introduction.");
         }else{
             tv_introduction.setText("Description: " + userBean.getIntroduction().trim());
         }

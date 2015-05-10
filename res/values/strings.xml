@@ -8,7 +8,7 @@
     <string name="replay">replay</string>
     <string name="login">Login</string>
     <string name="exit">Exit</string>
-    <string name="discover">Discover</string>
+    <string name="discover">Restaurant</string>
     <string name="dish">Dish</string>
     <string name="notification">Notification</string>
     <string name="setting">Setting</string>
@@ -20,6 +20,7 @@
     <string name="friends">My Friends</string>
     <string name="user_comment">My Comment</string>
     <string name="user_notification">My Notification</string>
+    <string name="bill">My Bills</string>
     <string name="login_tip">please login first</string>
     <string name="user_no_dish_tip">please add dish first</string>
     <string name="title_activity_user_info">UserInfoActivity</string>
@@ -28,5 +29,10 @@
     <string name="title_activity_restaurant_fragment">RestaurantFragment</string>
     <string name="title_activity_restaurant_detail">RestaurantDetailActivity</string>
     <string name="title_activity_restaurant_location">RestaurantLocationActivity</string>
+    <string name="friend_request">New Friend Request</string>
+    <string name="dish_pay">Pay</string>
+    <string name="title_activity_dish_pay">DishPayActivity</string>
+    <string name="title_activity_bill">BillActivity</string>
+    <string name="bill_tip">browse my bill records</string>
 
 </resources>

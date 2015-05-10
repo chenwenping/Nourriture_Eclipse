@@ -59,6 +59,12 @@ public class DishDetailActivity extends ActionBarActivity implements View.OnClic
     private UserBean userBean;
     private LikeBean likeBean;
     private int request = 5;
+    
+    // add dish pay ll
+    private TextView dish_count_tv, dish_price_tv;
+    private Button dish_add_btn, dish_remove_btn, dish_pay_btn;
+    private int dish_count = 1;
+    private int dish_price = 0, total_price = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -88,7 +94,16 @@ public class DishDetailActivity extends ActionBarActivity implements View.OnClic
         favor_num_tv = (TextView) this.findViewById(R.id.tv_favor_num);
         comment_num_tv = (TextView) this.findViewById(R.id.tv_comment_num);
         back_btn = (Button) this.findViewById(R.id.btn_back);
-
+        
+        dish_count_tv = (TextView) this.findViewById(R.id.tv_dish_pay_count);
+        dish_price_tv = (TextView) this.findViewById(R.id.tv_dish_price);
+        dish_add_btn = (Button) this.findViewById(R.id.btn_dish_pay_add);
+        dish_remove_btn = (Button) this.findViewById(R.id.btn_dish_pay_remove);
+        dish_pay_btn = (Button) this.findViewById(R.id.btn_dish_pay);
+        dish_add_btn.setOnClickListener(this);
+        dish_remove_btn.setOnClickListener(this);
+        dish_pay_btn.setOnClickListener(this);
+        
         back_btn.setOnClickListener(this);
         dish_favor_ll.setOnClickListener(this);
         dish_comment_ll.setOnClickListener(this);
@@ -104,7 +119,10 @@ public class DishDetailActivity extends ActionBarActivity implements View.OnClic
         } else {
             asynImageLoader.showImageAsyn(dish_picture_img, pictureBaseUrl + dishBean.getPicture(), R.drawable.default_dish_picture);
         }
-
+        
+        dish_price = dishBean.getPrice();
+        dish_price_tv.setText("Price: " + String.valueOf(dish_price));
+       
         getLikesFromDish();
     }
 
@@ -218,6 +236,34 @@ public class DishDetailActivity extends ActionBarActivity implements View.OnClic
                 bundle.putSerializable("dishBean", dishBean);
                 intent.putExtras(bundle);
                 startActivity(intent);
+                break;
+            case R.id.btn_dish_pay_add:
+                dish_count++;
+                dish_count_tv.setText(String.valueOf(dish_count));
+                total_price = dish_count * dish_price;
+                dish_price_tv.setText("Price: " + String.valueOf(total_price));
+                break;
+            case R.id.btn_dish_pay_remove:
+                if(dish_count != 1){
+                	dish_count--;
+                    dish_count_tv.setText(String.valueOf(dish_count));
+                    total_price = dish_count * dish_price;
+                    dish_price_tv.setText("Price: " + String.valueOf(total_price));
+                }
+                break;
+            case R.id.btn_dish_pay:
+            	if(isLogin){
+            		dishBean.setDish_count(dish_count);
+            		dishBean.setTotal_price(total_price);
+            		Intent intent2 = new Intent(DishDetailActivity.this, DishPayActivity.class);
+                    Bundle bundle2 = new Bundle();
+                    bundle2.putSerializable("dishBean", dishBean);
+                    intent2.putExtras(bundle2);
+                    startActivity(intent2);
+            	} else {
+                    Intent intent2 = new Intent(DishDetailActivity.this, LoginActivity.class);
+                    startActivityForResult(intent2, request);
+                }  	
                 break;
             case R.id.btn_back:
                 finish();

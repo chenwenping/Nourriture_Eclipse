@@ -2,12 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/background_color" >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/title_nav_bar">
+        android:background="@drawable/title_nav_bar" >
 
         <Button
             android:id="@+id/btn_back"
@@ -23,15 +24,52 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="@string/friends" />
-
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/friend_request_ll"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/item" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="5dp"
+                android:contentDescription="@string/friend_request"
+                android:src="@drawable/new_friend" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/friend_request" />
+
+            <TextView
+                android:id="@+id/friend_request_num_tv"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="100dp"
+                android:background="@drawable/notification_dot"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_main" />
+        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/search_bar_bg"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal" >
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -40,7 +78,7 @@
             android:background="@drawable/search_bar"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:orientation="horizontal">
+            android:orientation="horizontal" >
 
             <EditText
                 android:layout_width="fill_parent"
@@ -61,49 +99,21 @@
                 android:layout_margin="2dp"
                 android:background="@drawable/search_icon" />
         </LinearLayout>
-
     </LinearLayout>
 
-    <RelativeLayout
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" >
 
-        <ScrollView
+        <ListView
+            android:id="@+id/friendListView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="none">
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <include layout="@layout/item_friend"></include>
-
-                <include layout="@layout/item_friend"></include>
-
-                <include layout="@layout/item_friend"></include>
-
-                <include layout="@layout/item_friend"></include>
-
-                <include layout="@layout/item_friend"></include>
-
-                <include layout="@layout/item_friend"></include>
-
-                <include layout="@layout/item_friend"></include>
-
-                <include layout="@layout/item_friend"></include>
-
-            </LinearLayout>
-
-        </ScrollView>
-
-        <team_10.nourriture_android.view.LetterListView
-            android:id="@+id/LetterListView"
-            android:layout_width="25dip"
-            android:layout_height="fill_parent"
-            android:layout_alignParentRight="true" />
-
-    </RelativeLayout>
+            android:divider="@color/white"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:scrollbars="none" />
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

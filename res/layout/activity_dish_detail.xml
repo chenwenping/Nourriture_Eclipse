@@ -1,12 +1,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="@color/background_color"
+    android:orientation="vertical" >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/title_nav_bar">
+        android:background="@drawable/title_nav_bar" >
 
         <Button
             android:id="@+id/btn_back"
@@ -23,154 +24,222 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="@string/dish_detail" />
-
     </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/item"
-        android:orientation="vertical">
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:id="@+id/dish_description_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/item"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/img_dish_picture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/default_dish_picture" />
+
+                <TextView
+                    android:id="@+id/tv_dish_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Description:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_main" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:gravity="center" >
+
+                <LinearLayout
+                    android:id="@+id/ll_dish_favor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="40dp"
+                    android:layout_toLeftOf="@+id/ll_dish_comment"
+                    android:layout_weight="1" >
+
+                    <ImageView
+                        android:id="@+id/img_dish_favor"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/favor_selector" />
+
+                    <TextView
+                        android:id="@+id/tv_favor_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="Favor"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_main" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_dish_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_weight="1" >
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/comment_dish" />
+
+                    <TextView
+                        android:id="@+id/tv_comment_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:text="Comment"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_main" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dish_ingridient_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dish_description_ll"
+            android:layout_margin="5dp"
+            android:background="@drawable/item"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Dish ingredients:"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_big" />
+
+            <ImageView style="@style/item_line_style" />
+
+            <TextView
+                android:id="@+id/tv_dish_ingredient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="ingredients ingredients ingredients ingredients"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_main" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/img_dish_picture"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="5dp"
-                android:src="@drawable/default_dish_picture" />
+            android:layout_below="@id/dish_ingridient_ll"
+            android:layout_margin="5dp"
+            android:background="@drawable/item"
+            android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/tv_dish_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:text="Description:"
+                android:layout_margin="10dp"
+                android:text="Dish steps:"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_big" />
+
+            <ImageView style="@style/item_line_style" />
+
+            <TextView
+                android:id="@+id/tv_dish_step"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Step 1: ingredients ingredients ingredients"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_main" />
-
         </LinearLayout>
 
         <RelativeLayout
+            android:id="@+id/dish_pay_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:gravity="center">
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/bottom" >
 
             <LinearLayout
-                android:id="@+id/ll_dish_favor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="40dp"
-                android:layout_toLeftOf="@+id/ll_dish_comment"
-                android:layout_weight="1">
+                android:layout_centerVertical="true"
+                android:layout_margin="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
 
-                <ImageView
-                    android:id="@+id/img_dish_favor"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:background="@drawable/favor_selector" />
+                <Button
+                    android:id="@+id/btn_dish_pay_remove"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/dish_pay_remove" />
 
                 <TextView
-                    android:id="@+id/tv_favor_num"
+                    android:id="@+id/tv_dish_pay_count"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="6dp"
+                    android:background="@drawable/dish_pay_count"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_big" />
+
+                <Button
+                    android:id="@+id/btn_dish_pay_add"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/dish_pay_add" />
+
+                <TextView
+                    android:id="@+id/tv_dish_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:text="Favor"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_main" />
-
+                    android:layout_margin="6dp"
+                    android:text="$Price:5"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_big" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/ll_dish_comment"
+            <Button
+                android:id="@+id/btn_dish_pay"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_alignParentRight="true"
-                android:layout_weight="1">
-
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_alignParentRight="true"
-                    android:src="@drawable/comment_dish" />
-
-                <TextView
-                    android:id="@+id/tv_comment_num"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="1"
-                    android:text="Comment"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_main" />/>
-            </LinearLayout>
-
+                android:layout_centerVertical="true"
+                android:layout_margin="6dp"
+                android:background="@drawable/dish_pay_btn"
+                android:text="@string/dish_pay"
+                android:textColor="@color/white" />
         </RelativeLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/item"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="Dish ingredients:"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_big" />
-
-        <ImageView style="@style/item_line_style" />
-
-        <TextView
-            android:id="@+id/tv_dish_ingredient"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="ingredients ingredients ingredients ingredients"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_main" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/item"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="Dish steps:"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_big" />
-
-        <ImageView style="@style/item_line_style" />
-
-        <TextView
-            android:id="@+id/tv_dish_step"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="Step 1: ingredients ingredients ingredients"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_main" />
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

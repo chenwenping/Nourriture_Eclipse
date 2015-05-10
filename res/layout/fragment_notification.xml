@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/background_color">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -137,6 +138,9 @@
 
     </LinearLayout>
 
+    <ScrollView android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -196,7 +200,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/item"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -215,6 +220,30 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/ll_my_bill"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/item"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:src="@drawable/new_friend" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:text="My Bills"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_main" />
+
+        </LinearLayout>
+        
         <LinearLayout
             android:id="@+id/ll_my_notification"
             android:layout_width="match_parent"
@@ -252,4 +281,6 @@
         </LinearLayout>
 
     </LinearLayout>
+    
+    </ScrollView>
 </LinearLayout>

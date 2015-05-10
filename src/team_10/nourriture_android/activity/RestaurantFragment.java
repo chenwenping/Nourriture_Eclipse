@@ -33,7 +33,9 @@ import team_10.nourriture_android.R;
 import team_10.nourriture_android.adapter.RestaurantAdapter;
 import team_10.nourriture_android.bean.RestaurantBean;
 import team_10.nourriture_android.jsonTobean.JsonTobean;
+import team_10.nourriture_android.utils.GlobalParams;
 import team_10.nourriture_android.utils.ObjectPersistence;
+import team_10.nourriture_android.utils.SharedPreferencesUtil;
 
 public class RestaurantFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
 
@@ -54,6 +56,7 @@ public class RestaurantFragment extends Fragment implements SwipeRefreshLayout.O
     private int searchIconDefault; // default search icon
     private int searchIconClear; // clear search text icon
     private Context mContext;
+    private SharedPreferences sp;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,11 +68,12 @@ public class RestaurantFragment extends Fragment implements SwipeRefreshLayout.O
         return inflater.inflate(R.layout.fragment_restaurant, container, false);
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mContext = getActivity();
-
+        sp = mContext.getSharedPreferences(GlobalParams.TAG_LOGIN_PREFERENCES, Context.MODE_PRIVATE);
         searchIconDefault = R.drawable.search_icon;
         searchIconClear = R.drawable.search_delete;
         search_btn = (Button) getActivity().findViewById(R.id.btn_search);
@@ -155,7 +159,7 @@ public class RestaurantFragment extends Fragment implements SwipeRefreshLayout.O
         if (restaurantList != null && restaurantList.size() > 0) {
             for (int i = 0; i < restaurantList.size(); i++) {
                 RestaurantBean restaurantBean = restaurantList.get(i);
-                if (restaurantBean.getName().contains(search_content) || search_content.contains(restaurantBean.getName())) {
+                if (restaurantBean.getRestaurantName().contains(search_content) || search_content.contains(restaurantBean.getRestaurantName())) {
                     searchRestaurantList.add(restaurantBean);
                 }
             }
@@ -191,7 +195,7 @@ public class RestaurantFragment extends Fragment implements SwipeRefreshLayout.O
     }
 
     public void getAllRestaurant() {
-        NourritureRestClient.get("dishes", null, new JsonHttpResponseHandler() {
+        NourritureRestClient.get("restaurants", null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 Log.e("Restaurant", response.toString());
@@ -239,6 +243,13 @@ public class RestaurantFragment extends Fragment implements SwipeRefreshLayout.O
                 }
             }
 
+            @Override
+            public void onFailure(int statusCode, Header[] headers,
+            		String responseString, Throwable throwable) {
+            	// TODO Auto-generated method stub
+            	super.onFailure(statusCode, headers, responseString, throwable);
+            	Log.e("responseString", responseString);
+            }
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 if (progress.isShowing()) {

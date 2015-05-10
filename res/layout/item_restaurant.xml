@@ -90,14 +90,16 @@
             android:id="@+id/restaurant_picture_img"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:src="@drawable/default_dish_picture" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="center"
+            android:src="@drawable/default_restaurant_picture" />
 
         <TextView
             android:id="@+id/restaurant_description_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+			android:layout_margin="10dp"
             android:maxLines="5"
             android:text="restaurant description"
             android:textColor="@color/item_gray_color"

@@ -107,7 +107,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                         Toast.makeText(LoginActivity.this, "Login Success.", Toast.LENGTH_SHORT).show();
 
                         // start polling service
-                        PollingUtils.startPollingService(LoginActivity.this, 2, PollingService.class, PollingService.ACTION);
+                        //PollingUtils.startPollingService(LoginActivity.this, 2, PollingService.class, PollingService.ACTION);
 
                        /* Resources resource = getApplicationContext().getResources();
                         String pkgName = getApplicationContext().getPackageName();

@@ -30,7 +30,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         // start polling service
-        PollingUtils.startPollingService(this, 2, PollingService.class, PollingService.ACTION);
+        //PollingUtils.startPollingService(this, 2, PollingService.class, PollingService.ACTION);
 
         /*Resources resource = this.getResources();
         String pkgName = this.getPackageName();
@@ -119,6 +119,6 @@ public class MainActivity extends ActionBarActivity {
     protected void onDestroy() {
         super.onDestroy();
         // stop polling service
-        PollingUtils.stopPollingService(this, PollingService.class, PollingService.ACTION);
+        //PollingUtils.stopPollingService(this, PollingService.class, PollingService.ACTION);
     }
 }

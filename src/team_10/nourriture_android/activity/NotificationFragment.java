@@ -50,7 +50,7 @@ public class NotificationFragment extends Fragment implements View.OnClickListen
     private Button btn_login;
     private TextView tv_name, tv_birth, tv_introduction, tv_notification_num;
     private ImageView img_photo;
-    private LinearLayout ll_dishes_comment, ll_favor_dishes, ll_my_friends, ll_my_notification;
+    private LinearLayout ll_dishes_comment, ll_favor_dishes, ll_my_friends, ll_my_notification, ll_my_bill;
     private UserBean userBean;
     private boolean isLogin = false;
     private SharedPreferences sp;
@@ -125,13 +125,15 @@ public class NotificationFragment extends Fragment implements View.OnClickListen
         ll_favor_dishes = (LinearLayout) getActivity().findViewById(R.id.ll_favor_dishes);
         ll_my_friends = (LinearLayout) getActivity().findViewById(R.id.ll_my_friends);
         ll_my_notification = (LinearLayout) getActivity().findViewById(R.id.ll_my_notification);
-
+        ll_my_bill = (LinearLayout) getActivity().findViewById(R.id.ll_my_bill);
+        
         btn_login.setOnClickListener(this);
         ll_dishes_comment.setOnClickListener(this);
         ll_favor_dishes.setOnClickListener(this);
         ll_my_friends.setOnClickListener(this);
         ll_my_notification.setOnClickListener(this);
-
+        ll_my_bill.setOnClickListener(this);
+        
         getMyUnreadNotifications();
     }
 
@@ -178,19 +180,29 @@ public class NotificationFragment extends Fragment implements View.OnClickListen
             case R.id.ll_my_notification:
                 if (isLogin) {
                     if (notification_num > 0) {
-                        Intent intent3 = new Intent(getActivity().getApplicationContext(), NotificationActivity.class);
-                        intent3.putExtra("unReadNotificationList", (Serializable) unReadNotificationList);
-                        startActivityForResult(intent3, request);
+                        Intent intent4 = new Intent(getActivity().getApplicationContext(), NotificationActivity.class);
+                        intent4.putExtra("unReadNotificationList", (Serializable) unReadNotificationList);
+                        startActivityForResult(intent4, request);
                     } else {
                         Toast.makeText(getActivity(), "There is no unread notification.", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Toast.makeText(getActivity(), "Please login first", Toast.LENGTH_SHORT).show();
-                    Intent intent3 = new Intent(getActivity().getApplicationContext(), LoginActivity.class);
+                    Intent intent4 = new Intent(getActivity().getApplicationContext(), LoginActivity.class);
                     //startActivity(intent);
-                    startActivityForResult(intent3, request);
+                    startActivityForResult(intent4, request);
                 }
                 break;
+            case R.id.ll_my_bill:
+            	 if (isLogin) {
+                     Intent intent5 = new Intent(getActivity().getApplicationContext(), BillActivity.class);
+                     startActivity(intent5);
+                 } else {
+                     Toast.makeText(getActivity(), "Please login first", Toast.LENGTH_SHORT).show();
+                     Intent intent5 = new Intent(getActivity().getApplicationContext(), LoginActivity.class);
+                     startActivityForResult(intent5, request);
+                 }
+            	break;
             default:
                 break;
         }

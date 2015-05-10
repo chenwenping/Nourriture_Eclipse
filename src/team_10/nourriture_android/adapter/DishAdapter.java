@@ -114,7 +114,7 @@ public class DishAdapter extends BaseAdapter {
                     AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
                     builder.setTitle("Confirm delete");
                     builder.setIcon(android.R.drawable.ic_dialog_info);
-                    builder.setMessage("Do you really want to delete the dish ?");
+                    builder.setMessage("Are you sure to delete the dish ?");
                     builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

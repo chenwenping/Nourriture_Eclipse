@@ -19,8 +19,29 @@ public class DishBean implements Serializable {
     private String[] ingredients;
     private String[] problems;
     private String user;
+    private int price;
+    private String restaurant;
+    
+    private int dish_count;
+    private int total_price;
+    
+	public int getDish_count() {
+		return dish_count;
+	}
 
-    public String get_id() {
+	public void setDish_count(int dish_count) {
+		this.dish_count = dish_count;
+	}
+	
+	public int getTotal_price() {
+		return total_price;
+	}
+
+	public void setTotal_price(int total_price) {
+		this.total_price = total_price;
+	}
+
+	public String get_id() {
         return _id;
     }
 
@@ -91,4 +112,20 @@ public class DishBean implements Serializable {
     public void setUser(String user) {
         this.user = user;
     }
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public String getRestaurant() {
+		return restaurant;
+	}
+
+	public void setRestaurant(String restaurant) {
+		this.restaurant = restaurant;
+	}
 }

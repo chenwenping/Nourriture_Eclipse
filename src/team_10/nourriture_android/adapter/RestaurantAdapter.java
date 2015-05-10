@@ -73,18 +73,18 @@ public class RestaurantAdapter extends BaseAdapter {
         }
 
         final RestaurantBean restaurantBean = (RestaurantBean) mRestaurantList.get(position);
-        rvh.name.setText(restaurantBean.getName());
-        rvh.description.setText(restaurantBean.getDescription());
+        rvh.name.setText(restaurantBean.getRestaurantName());
+        rvh.description.setText(restaurantBean.getIntroduction());
 
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String strDate = df.format(restaurantBean.getDate());
+        String strDate = df.format(restaurantBean.getRegistrationDate());
         rvh.time.setText(strDate);
 
         AsynImageLoader asynImageLoader = new AsynImageLoader();
         if (restaurantBean.getPicture() == null || "".equals(restaurantBean.getPicture().trim()) || "null".equals(restaurantBean.getPicture().trim())) {
-            rvh.picture.setImageResource(R.drawable.default_dish_picture);
+            rvh.picture.setImageResource(R.drawable.default_restaurant_picture);
         } else {
-            asynImageLoader.showImageAsyn(rvh.picture, pictureBaseUrl + restaurantBean.getPicture(), R.drawable.default_dish_picture);
+            asynImageLoader.showImageAsyn(rvh.picture, pictureBaseUrl + restaurantBean.getPicture(), R.drawable.default_restaurant_picture);
         }
 
         rvh.Restaurant_item_rl.setOnClickListener(new View.OnClickListener() {
