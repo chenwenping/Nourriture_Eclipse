@@ -445,6 +445,15 @@ public class LocationActivity extends Activity {
 	    
 	    //修改定位数据后刷新图层生效
 	    mMapView.refresh();
+	    
+	    
+	    ((Button) findViewById(R.id.btn_back)).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				finish();
+			}
+		});
         
 	}
 	
@@ -574,7 +583,7 @@ public class LocationActivity extends Activity {
 		isRequest = true;
 		
 		if(mLocClient != null && mLocClient.isStarted()){
-			showToast("正在定位......");
+			showToast("Locating......");
 			mLocClient.requestLocation();
 		}else{
 			Log.d("LocSDK3", "locClient is null or not started");
