@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.apache.http.Header;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
@@ -29,6 +30,8 @@ import team_10.nourriture_android.R;
 import team_10.nourriture_android.activity.DishDetailActivity;
 import team_10.nourriture_android.activity.NourritureRestClient;
 import team_10.nourriture_android.bean.BillBean;
+import team_10.nourriture_android.bean.DishBean;
+import team_10.nourriture_android.jsonTobean.JsonTobean;
 import team_10.nourriture_android.utils.AsynImageLoader;
 import team_10.nourriture_android.utils.GlobalParams;
 import team_10.nourriture_android.utils.SharedPreferencesUtil;
@@ -43,7 +46,8 @@ public class BillAdapter extends BaseAdapter {
     private Context mContext;
     private boolean isUpdate = false;
     private billViewHolder bvh = null;
-
+    private DishBean dishBean;
+    
     public BillAdapter(Context context, List<BillBean> billList) {
         mInflater = LayoutInflater.from(context);
         mContext = context;
@@ -62,36 +66,28 @@ public class BillAdapter extends BaseAdapter {
             convertView = mInflater.inflate(R.layout.item_bill, null);
             bvh = new billViewHolder();
             bvh.bill_item_rl = (LinearLayout) convertView.findViewById(R.id.bill_item_ll);
-            bvh.name = (TextView) convertView.findViewById(R.id.bill_dish_name_tv);
+            bvh.dish = (TextView) convertView.findViewById(R.id.bill_dish_tv);
             bvh.count = (TextView) convertView.findViewById(R.id.bill_dish_count_tv);
             bvh.price = (TextView) convertView.findViewById(R.id.bill_dish_price_tv);
-            bvh.time = (TextView) convertView.findViewById(R.id.bill_time_tv);
+            bvh.restaurant = (TextView) convertView.findViewById(R.id.bill_restaurant_tv);
             convertView.setTag(bvh);
         } else {
             bvh = (billViewHolder) convertView.getTag();
         }
 
-      /*  final BillBean BillBean = (BillBean) mBillList.get(position);
-        bvh.name.setText(BillBean.getName());
-        bvh.description.setText(BillBean.getDescription());
-
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String strDate = df.format(BillBean.getDate());
-        bvh.time.setText(strDate);
-
-        AsynImageLoader asynImageLoader = new AsynImageLoader();
-        if (BillBean.getPicture() == null || "".equals(BillBean.getPicture().trim()) || "null".equals(BillBean.getPicture().trim())) {
-            bvh.picture.setImageResource(R.drawable.default_bill_picture);
-        } else {
-            asynImageLoader.showImageAsyn(bvh.picture, pictureBaseUrl + BillBean.getPicture(), R.drawable.default_bill_picture);
-        }*/
-
+        final BillBean billBean = (BillBean) mBillList.get(position);
+        getMyBillDetail(billBean);
+        /*bvh.dish.setText(billBean.getDish_name());
+        bvh.count.setText(billBean.getDish_count());
+        bvh.price.setText(billBean.getDish_price());
+        bvh.restaurant.setText(billBean.getRestaurant_name());*/
+        
         bvh.bill_item_rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, DishDetailActivity.class);
                 Bundle bundle = new Bundle();
-//                bundle.putSerializable("BillBean", BillBean);
+                bundle.putSerializable("dishBean", dishBean);
                 intent.putExtras(bundle);
                 mContext.startActivity(intent);
             }
@@ -100,38 +96,37 @@ public class BillAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public void deleteUserbill(final BillBean BillBean) {
-        String url = "billes/" + BillBean.get_id();
+    public void getMyBillDetail(final BillBean bean){
+		String url = "dishes/" + bean.getDish();
+		NourritureRestClient.get(url, null, new JsonHttpResponseHandler(){
+			@Override
+			public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+				Log.e("getMyBillDetail", response.toString());
+	            if (statusCode == 200) {
+	            	try {
+						dishBean = (DishBean) JsonTobean.getList(DishBean[].class, response.toString()).get(0);
 
-        SharedPreferences sp = mContext.getSharedPreferences(GlobalParams.TAG_LOGIN_PREFERENCES, Context.MODE_PRIVATE);
-        String username = sp.getString(SharedPreferencesUtil.TAG_USER_NAME, "");
-        String password = sp.getString(SharedPreferencesUtil.TAG_PASSWORD, "");
-
-        NourritureRestClient.deleteWithLogin(url, username, password, new JsonHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                super.onSuccess(statusCode, headers, response);
-                Log.e("delete bill", response.toString());
-                if (statusCode == 204) {
-                    mBillList.remove(BillBean);
-                    notifyDataSetChanged();
-                } else {
-                    Toast.makeText(mContext, "Deleting bill is wrong. Please try it again.", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                Toast.makeText(mContext, "Deleting bill is wrong. Please try it again.", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                Toast.makeText(mContext, "Deleting bill is wrong. Please try it again.", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
+						bean.setDish_name(dishBean.getName());
+						bean.setDish_count(dishBean.getDish_count());
+						bean.setDish_price(dishBean.getPrice());
+						
+						bvh.dish.setText(dishBean.getName());
+				        bvh.count.setText("1");
+				        bvh.price.setText(String.valueOf(dishBean.getPrice()));
+				        bvh.restaurant.setText(dishBean.getRestaurant());
+				        
+						Log.e("dishBean.getName()", dishBean.getName());
+						Log.e("bean.getDish_name()", bean.getDish_name());
+						
+	            	} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	            }
+			}
+		});
+	}
+    
     @Override
     public Object getItem(int position) {
         return mBillList.get(position);
@@ -148,10 +143,10 @@ public class BillAdapter extends BaseAdapter {
     }
 
     static class billViewHolder {
-        TextView name;
+        TextView dish;
         TextView count;
         TextView price;
-        TextView time;
+        TextView restaurant;
         LinearLayout bill_item_rl;
     }
 }

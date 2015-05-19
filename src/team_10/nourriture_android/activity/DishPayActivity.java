@@ -18,6 +18,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -106,9 +107,14 @@ public class DishPayActivity extends ActionBarActivity implements OnClickListene
 	    NourritureRestClient.postWithLogin("payDish", params, username, password, new JsonHttpResponseHandler(){
 	    	@Override
 	    	public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-	    		// TODO Auto-generated method stub
-	    		super.onSuccess(statusCode, headers, response);
+	    		Log.e("payDish", response.toString());
 	    		isSuccess = true;
+	    		if (progress.isShowing()) {
+                    progress.dismiss();
+                }
+	    		pay_btn.setVisibility(View.GONE);
+		        dish_pay_success_ll.setVisibility(View.VISIBLE);
+		        
 	    	}
 	    });
 		if(isSuccess){

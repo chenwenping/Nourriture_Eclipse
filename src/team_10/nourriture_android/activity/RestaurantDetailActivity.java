@@ -33,6 +33,7 @@ import team_10.nourriture_android.adapter.DishAdapter;
 import team_10.nourriture_android.bean.DishBean;
 import team_10.nourriture_android.bean.RestaurantBean;
 import team_10.nourriture_android.jsonTobean.JsonTobean;
+import team_10.nourriture_android.utils.AsynImageLoader;
 import team_10.nourriture_android.utils.GlobalParams;
 import team_10.nourriture_android.utils.ObjectPersistence;
 import team_10.nourriture_android.utils.SharedPreferencesUtil;
@@ -110,12 +111,12 @@ public class RestaurantDetailActivity extends ActionBarActivity implements Swipe
             introduction_tv.setText(restaurantBean.getIntroduction().trim());
         }
         Log.e("RestaurantDetailActivity picture", restaurantBean.getPicture());
-        /*AsynImageLoader asynImageLoader = new AsynImageLoader();
+        AsynImageLoader asynImageLoader = new AsynImageLoader();
         if (restaurantBean.getPicture() == null || "".equals(restaurantBean.getPicture().trim()) || "null".equals(restaurantBean.getPicture().trim())) {
-            img_photo.setImageResource(R.drawable.default_avatar);
+        	restaurant_img.setImageResource(R.drawable.default_restaurant_picture);
         } else {
-            asynImageLoader.showImageAsyn(img_photo, pictureBaseUrl + restaurantBean.getPicture(), R.drawable.default_avatar);
-        }*/
+            asynImageLoader.showImageAsyn(restaurant_img, pictureBaseUrl + restaurantBean.getPicture(), R.drawable.default_restaurant_picture);
+        }
         
         getRestaurantDishList();
     }
@@ -141,7 +142,7 @@ public class RestaurantDetailActivity extends ActionBarActivity implements Swipe
 			finish();
 			break;
 		case R.id.btn_location:
-			Intent intent = new Intent(RestaurantDetailActivity.this, RestaurantLocationActivity.class);
+			Intent intent = new Intent(RestaurantDetailActivity.this, LocationActivity.class);
 			startActivity(intent);
 			break;
 		default:

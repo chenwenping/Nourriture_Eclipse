@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/bill_item_ll"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/item">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
+
+            <TextView
+                android:id="@+id/tv_dish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="dish"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_main" />
+
+            <TextView
+                android:id="@+id/tv_dish_from"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_dish"
+                android:layout_margin="5dp"
+                android:text="from"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_main" />
+            
+            <TextView
+                android:id="@+id/tv_dish_to"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_dish_from"
+                android:layout_margin="5dp"
+                android:text="to"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_main" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

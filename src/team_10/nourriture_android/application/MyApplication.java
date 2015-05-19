@@ -3,7 +3,7 @@ package team_10.nourriture_android.application;
 import android.app.Application;
 
 import com.baidu.frontia.FrontiaApplication;
-import com.baidu.mapapi.SDKInitializer;
+//import com.baidu.mapapi.SDKInitializer;
 
 import team_10.nourriture_android.activity.LoginActivity;
 import team_10.nourriture_android.bean.UserBean;
@@ -38,7 +38,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-        SDKInitializer.initialize(this);
+        //SDKInitializer.initialize(this);
     }
 
     public void updateOrSaveUserBean(UserBean userBean) {

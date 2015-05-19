@@ -1,21 +1,17 @@
 package team_10.nourriture_android.activity;
 
-import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.http.Header;
 import org.json.JSONArray;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import team_10.nourriture_android.R;
-import team_10.nourriture_android.adapter.BillAdapter;
-import team_10.nourriture_android.adapter.LikeAdapter;
+import team_10.nourriture_android.adapter.BillAdapter2;
 import team_10.nourriture_android.bean.BillBean;
-import team_10.nourriture_android.bean.LikeBean;
-import team_10.nourriture_android.bean.NotificationBean;
+import team_10.nourriture_android.bean.DishBean;
 import team_10.nourriture_android.jsonTobean.JsonTobean;
 import team_10.nourriture_android.utils.GlobalParams;
 import team_10.nourriture_android.utils.ObjectPersistence;
@@ -39,7 +35,7 @@ public class BillActivity extends ActionBarActivity  implements SwipeRefreshLayo
 	private List<BillBean> billList;
 	private SwipeRefreshLayout swipeLayout;
 	private ListView billListView;
-	private BillAdapter billAdapter;
+	private BillAdapter2 billAdapter;
 	private boolean isRefresh = false;
 	private LinearLayout no_bill_ll;
 	private Button back_btn;
@@ -91,8 +87,13 @@ public class BillActivity extends ActionBarActivity  implements SwipeRefreshLayo
 	              	try {
 						billList = JsonTobean.getList(BillBean[].class, response.toString());
 						if(billList!=null && billList.size()>0){
+							/*for(int i=0; i<billList.size(); i++){
+								getMyBillDetail(billList.get(i), i);
+							}*/
 							no_bill_ll.setVisibility(View.GONE);
 							swipeLayout.setVisibility(View.VISIBLE);
+							Collections.reverse(billList);
+	                        ObjectPersistence.writeObjectToFile(mContext, billList, BILL_DATA_PATH);
 							if (isRefresh) {
                                 if (billAdapter.mBillList != null && billAdapter.mBillList.size() > 0) {
                                 	billAdapter.mBillList.clear();
@@ -100,7 +101,7 @@ public class BillActivity extends ActionBarActivity  implements SwipeRefreshLayo
                                 billAdapter.mBillList.addAll(billList);
                                 isRefresh = false;
                             } else {
-                            	billAdapter = new BillAdapter(mContext, false);
+                            	billAdapter = new BillAdapter2(mContext, false);
                             	billAdapter.mBillList.addAll(billList);
                             }
                             billListView.setAdapter(billAdapter);
@@ -113,9 +114,54 @@ public class BillActivity extends ActionBarActivity  implements SwipeRefreshLayo
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+	            }else{
+	            	if (progress.isShowing()) {
+                        progress.dismiss();
+                    }
+	            	getLocalBillData();
+	            	if(billList!=null && billList.size()>0){
+						no_bill_ll.setVisibility(View.GONE);
+						swipeLayout.setVisibility(View.VISIBLE);
+						if (isRefresh) {
+                            if (billAdapter.mBillList != null && billAdapter.mBillList.size() > 0) {
+                            	billAdapter.mBillList.clear();
+                            }
+                            billAdapter.mBillList.addAll(billList);
+                            isRefresh = false;
+                        } else {
+                        	billAdapter = new BillAdapter2(mContext, false);
+                        	billAdapter.mBillList.addAll(billList);
+                        }
+                        billListView.setAdapter(billAdapter);
+                        billAdapter.notifyDataSetChanged();
+					}else{
+						no_bill_ll.setVisibility(View.VISIBLE);
+						swipeLayout.setVisibility(View.GONE);
+					}
 	            }
 			} 
 		 });
+	}
+	
+	public void getMyBillDetail(final BillBean billBean, final int i){
+		String url = "dishes/" + billBean.getDish();
+		NourritureRestClient.get(url, null, new JsonHttpResponseHandler(){
+			@Override
+			public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+				Log.e("getMyBillDetail", response.toString());
+	            if (statusCode == 200) {
+	            	try {
+						DishBean dishBean = (DishBean) JsonTobean.getList(DishBean[].class, response.toString()).get(0);
+						billList.get(i).setDish_name(dishBean.getName());
+						billList.get(i).setDish_count(dishBean.getDish_count());
+						billList.get(i).setDish_price(dishBean.getPrice());	
+	            	} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	            }
+			}
+		});
 	}
 	
 	@Override
@@ -142,10 +188,10 @@ public class BillActivity extends ActionBarActivity  implements SwipeRefreshLayo
         }
     }
     
-    /*public void getLocalFavorDishData() {
-        List<LikeBean> localFavorList = (List<LikeBean>) ObjectPersistence.readObjectFromFile(mContext, FAVOR_DISHES_DATA_PATH);
-        if (localFavorList != null) {
-            favorList = localFavorList;
+    public void getLocalBillData() {
+        List<BillBean> localBillList = (List<BillBean>) ObjectPersistence.readObjectFromFile(mContext, BILL_DATA_PATH);
+        if (localBillList != null) {
+            billList = localBillList;
         }
-    }*/
+    }
 }

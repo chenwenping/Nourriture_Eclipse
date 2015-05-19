@@ -1,4 +1,4 @@
-package team_10.nourriture_android.activity;
+/*package team_10.nourriture_android.activity;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -116,9 +116,9 @@ public class RestaurantLocationActivity extends ActionBarActivity {
         mLocClient.start();
     }
 
-    /**
+    *//**
      * 定位SDK监听函数
-     */
+     *//*
     public class MyLocationListenner implements BDLocationListener {
 
         @Override
@@ -167,4 +167,4 @@ public class RestaurantLocationActivity extends ActionBarActivity {
         mMapView = null;
         super.onDestroy();
     }
-}
+}*/

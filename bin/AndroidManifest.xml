@@ -48,7 +48,7 @@
     </uses-permission>
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-
+    
     <application
         android:name=".application.MyApplication"
         android:allowBackup="true"
@@ -64,7 +64,7 @@
         <!--
             <meta-data
             android:name="api_key"
-            android:value="D00kpN0V5FFGUnEHLNk9ErgF" />
+            android:value="D00kpN0V5FFGUnEHLNk9ErgF" />
         -->
 
         <activity
@@ -84,7 +84,7 @@
             <intent-filter>
                 <action android:name=".service.PollingService" />
             </intent-filter>
-        </service>
+        </service>
         -->
 
         <activity
@@ -144,6 +144,10 @@
         <activity
             android:name=".activity.BillActivity"
             android:label="@string/title_activity_bill" >
+        </activity>
+        <activity
+            android:name=".activity.LocationActivity"
+            android:label="@string/title_activity_location" >
         </activity>
     </application>
 

@@ -124,7 +124,7 @@
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
                         android:gravity="center"
-                        android:background="@drawable/login_button"
+                        android:background="@drawable/login_btn"
                         android:text="@string/discover"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_main" />

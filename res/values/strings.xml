@@ -34,5 +34,7 @@
     <string name="title_activity_dish_pay">DishPayActivity</string>
     <string name="title_activity_bill">BillActivity</string>
     <string name="bill_tip">browse my bill records</string>
-
+    <string name="title_activity_location">LocationActivity</string>
+	<string name="load_tips">Address is loading...</string>
+	
 </resources>

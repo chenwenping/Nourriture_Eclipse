@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,6 +62,7 @@ public class DishDetailActivity extends ActionBarActivity implements View.OnClic
     private int request = 5;
     
     // add dish pay ll
+    private RelativeLayout dish_pay_rl;
     private TextView dish_count_tv, dish_price_tv;
     private Button dish_add_btn, dish_remove_btn, dish_pay_btn;
     private int dish_count = 1;
@@ -95,6 +97,7 @@ public class DishDetailActivity extends ActionBarActivity implements View.OnClic
         comment_num_tv = (TextView) this.findViewById(R.id.tv_comment_num);
         back_btn = (Button) this.findViewById(R.id.btn_back);
         
+        dish_pay_rl = (RelativeLayout) this.findViewById(R.id.dish_pay_rl);
         dish_count_tv = (TextView) this.findViewById(R.id.tv_dish_pay_count);
         dish_price_tv = (TextView) this.findViewById(R.id.tv_dish_price);
         dish_add_btn = (Button) this.findViewById(R.id.btn_dish_pay_add);
@@ -118,6 +121,12 @@ public class DishDetailActivity extends ActionBarActivity implements View.OnClic
             dish_picture_img.setImageResource(R.drawable.default_dish_picture);
         } else {
             asynImageLoader.showImageAsyn(dish_picture_img, pictureBaseUrl + dishBean.getPicture(), R.drawable.default_dish_picture);
+        }
+        
+        if(dishBean.getRestaurant()==null || "".equals(dishBean.getRestaurant().trim()) || "null".equals(dishBean.getRestaurant().trim())){
+        	dish_pay_rl.setVisibility(View.GONE);
+        }else{
+        	dish_pay_rl.setVisibility(View.VISIBLE);
         }
         
         dish_price = dishBean.getPrice();
@@ -253,6 +262,7 @@ public class DishDetailActivity extends ActionBarActivity implements View.OnClic
                 break;
             case R.id.btn_dish_pay:
             	if(isLogin){
+            		total_price = dish_count * dish_price;
             		dishBean.setDish_count(dish_count);
             		dishBean.setTotal_price(total_price);
             		Intent intent2 = new Intent(DishDetailActivity.this, DishPayActivity.class);
