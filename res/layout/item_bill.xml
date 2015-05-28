@@ -14,51 +14,14 @@
         android:layout_margin="5dp"
         android:background="@drawable/item"
         android:orientation="vertical" >
-
-        <!-- <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:id="@+id/bill_dish_tv_tip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:text="Dish name: "
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_big" />
-            
-            <TextView
-                android:id="@+id/bill_dish_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/bill_dish_tv_tip"
-                android:layout_marginLeft="10dp"
-                android:singleLine="true"
-                android:textColor="@color/item_gray_color"
-                android:textSize="@dimen/text_big" />
-
-            <TextView
-                android:id="@+id/bill_time_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="2014-11-11 12:12:12"
-                android:textColor="@color/item_gray_color"
-                android:textSize="@dimen/text_small" />
-        </RelativeLayout> -->
-
- 		<LinearLayout
+      
+ 		<RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:layout_margin="10dp" >
 
             <TextView
+                android:id="@+id/bill_dish_tip_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Dish: "
@@ -69,14 +32,26 @@
                 android:id="@+id/bill_dish_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/bill_dish_tip_tv"
                 android:textColor="@color/item_gray_color"
                 android:textSize="@dimen/text_big" />
-        </LinearLayout>
+            
+            <TextView
+                android:id="@+id/bill_date_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="2015-5-20 11:11"
+                android:textColor="@color/item_gray_color"
+                android:textSize="@dimen/text_main" />
+            
+        </RelativeLayout>
         
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
 
@@ -100,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Total Price: "
+                android:text="Price: "
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_big" />
             
@@ -132,45 +107,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/item_gray_color"
-                android:textSize="@dimen/text_big" />
+                android:textSize="@dimen/text_main" />
         </LinearLayout>
-        
-        <!-- <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
 
-            <TextView
-                android:id="@+id/bill_restaurant_tv_tip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:text="Restaurant name: "
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_big" />
-            
-            <TextView
-                android:id="@+id/bill_restaurant_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/bill_restaurant_tv_tip"
-                android:layout_marginLeft="10dp"
-                android:singleLine="true"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_big" />
-
-            <TextView
-                android:id="@+id/bill_time_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="2014-11-11 12:12:12"
-                android:textColor="@color/item_gray_color"
-                android:textSize="@dimen/text_small" />
-        </RelativeLayout> -->
-        
     </LinearLayout>
 
 </LinearLayout>

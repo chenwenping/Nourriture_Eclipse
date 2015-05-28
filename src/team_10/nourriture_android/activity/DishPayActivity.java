@@ -100,6 +100,9 @@ public class DishPayActivity extends ActionBarActivity implements OnClickListene
 		RequestParams params = new RequestParams();
         params.add("restaurant_id", dishBean.getRestaurant());
         params.add("dish_id", dishBean.get_id());
+        params.add("dish_name", dishBean.getName());
+        params.add("dish_price", String.valueOf(dishBean.getPrice()));
+        params.add("restaurant_name", dishBean.getRestaurant());
         
 		String username = sp.getString(SharedPreferencesUtil.TAG_USER_NAME, "");
 	    String password = sp.getString(SharedPreferencesUtil.TAG_PASSWORD, "");
@@ -116,7 +119,17 @@ public class DishPayActivity extends ActionBarActivity implements OnClickListene
 		        dish_pay_success_ll.setVisibility(View.VISIBLE);
 		        
 	    	}
+	    	
+	    	@Override
+	    	public void onFailure(int statusCode, Header[] headers,
+	    			Throwable throwable, JSONObject errorResponse) {
+	    		// TODO Auto-generated method stub
+	    		//super.onFailure(statusCode, headers, throwable, errorResponse);
+	    		
+	    		Log.e("errorResponse", errorResponse.toString());
+	    	}
 	    });
+	    
 		if(isSuccess){
 			pay_btn.setVisibility(View.GONE);
 	        dish_pay_success_ll.setVisibility(View.VISIBLE);

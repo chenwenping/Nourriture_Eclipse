@@ -1,6 +1,7 @@
 package team_10.nourriture_android.bean;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class BillBean implements Serializable {
 
@@ -13,6 +14,12 @@ public class BillBean implements Serializable {
     private String from;
     private String to;
     private String dish;
+	
+	private String restaurantName;
+	private String name;
+	private int price;
+	private Date date;
+	
 	public String get_id() {
 		return _id;
 	}
@@ -37,34 +44,29 @@ public class BillBean implements Serializable {
 	public void setDish(String dish) {
 		this.dish = dish;
 	}
-	
-	private String dish_name;
-	private int dish_count;
-	private int dish_price;
-	private String restaurant_name;
-	public String getDish_name() {
-		return dish_name;
+	public String getRestaurantName() {
+		return restaurantName;
 	}
-	public void setDish_name(String dish_name) {
-		this.dish_name = dish_name;
+	public void setRestaurantName(String restaurantName) {
+		this.restaurantName = restaurantName;
 	}
-	public int getDish_count() {
-		return dish_count;
+	public String getName() {
+		return name;
 	}
-	public void setDish_count(int dish_count) {
-		this.dish_count = dish_count;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public int getDish_price() {
-		return dish_price;
+	public int getPrice() {
+		return price;
 	}
-	public void setDish_price(int dish_price) {
-		this.dish_price = dish_price;
+	public void setPrice(int price) {
+		this.price = price;
 	}
-	public String getRestaurant_name() {
-		return restaurant_name;
+	public Date getDate() {
+		return date;
 	}
-	public void setRestaurant_name(String restaurant_name) {
-		this.restaurant_name = restaurant_name;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	
 }
